@@ -1,13 +1,14 @@
 version: 2
 registries:
-  nuget-org:
+  private-nuget:
     type: nuget-feed
-    url: https://api.nuget.org/v3/index.json
+    url: https://nuget.pkg.github.com/IngridTPires/index.json
+    token: ${{secrets.MY_PACKAGE_TOKEN}}
 updates:
   - package-ecosystem: "nuget"
     directory: "/"
-    registries:    
-      - nuget-org
+    registries:
+      - private-nuget
     schedule:
       interval: "daily"    
     open-pull-requests-limit: 5
@@ -18,4 +19,4 @@ updates:
       include: "scope"
     target-branch: "main"
     allow:
-      - dependency-name: "Z.EntityFramework.Extensions"
+      - dependency-name: "NuGetPackage"
